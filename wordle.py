@@ -25,8 +25,8 @@ def get_random_word():
 def check_word():
     keyword = get_random_word()
     print(f"The keyword have {len(keyword)} characters")
-    attempts = len(keyword) + 5
-    score = 5
+    attempts = len(keyword) + 3
+    score = attempts
     url = "https://dictionary.cambridge.org/dictionary/english-vietnamese/{}".format(keyword)
     while attempts > 0:
         guess = input("Guess the word: ").strip()
@@ -36,8 +36,8 @@ def check_word():
             continue
 
         if guess == keyword:
-            print("Correct! Your score is {}.format(score)\n"
-                  "Vietnamese Meaning: {url}")
+            print(f"Correct! Your score is {score}\n"
+                  f"Vietnamese Meaning: {url}")
             break
         else:
             attempts -= 1
