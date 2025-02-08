@@ -1,11 +1,9 @@
 import random
-import os
-
 
 def game_instruction():
     print("Welcome to Wordle!\n"
-          "You have 5 attempts to get the hidden word right\n"
-          "Progress guide:\n"
+          "You have limited attempts to get the hidden word right\n"
+          "Game guide:\n"
           "🔴 indicates that the letter isn't in the hidden word\n"
           "🟢 indicates that the letter was guessed correctly at the correct position\n"
           "🟡 indicates that the letter was guessed correctly but at the wrong position\n")
@@ -18,7 +16,7 @@ def get_random_word():
             return random.choice(words)
     except FileNotFoundError:
         print("Error: words.txt file not found")
-        return "test"  # fallback word
+        return "test"
     except Exception as e:
         print(f"Error reading file: {e}")
         return "test"
@@ -27,8 +25,9 @@ def get_random_word():
 def check_word():
     keyword = get_random_word()
     print(f"The keyword have {len(keyword)} characters")
-    attempts = 5
+    attempts = len(keyword) + 5
     score = 5
+    url = "https://dictionary.cambridge.org/dictionary/english-vietnamese/{}".format(keyword)
     while attempts > 0:
         guess = input("Guess the word: ").strip()
 
@@ -37,7 +36,8 @@ def check_word():
             continue
 
         if guess == keyword:
-            print("Correct! Your score is {}.".format(score))
+            print("Correct! Your score is {}.format(score)\n"
+                  "Vietnamese Meaning: {url}")
             break
         else:
             attempts -= 1
@@ -54,7 +54,6 @@ def check_word():
                 print(guess_letter + "🔴")
 
         if attempts == 0:
-            url = "https://dictionary.cambridge.org/dictionary/english-vietnamese/{}".format(keyword)
             print("GAME OVER")
             print(f"The word was: {keyword}\n"
                   f"Vietnamese Meaning: {url}")
