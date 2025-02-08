@@ -13,7 +13,7 @@ def get_random_word():
     try:
         with open(r"C:\Users\minh\PycharmProjects\wordle\words.txt", 'r', encoding='utf-8') as file:
             words = file.read().splitlines()
-            return random.choice(words)
+            return random.choice(words).lower()
     except FileNotFoundError:
         print("Error: words.txt file not found")
         return "test"
@@ -31,6 +31,10 @@ def check_word():
     while attempts > 0:
         guess = input("Guess the word: ").strip()
 
+        if guess == "x":
+            print("Thanks for playing! Game exited.")
+            return
+        x
         if len(guess) != len(keyword):
             print(f"Please enter a {len(keyword)}-letter word!")
             continue
